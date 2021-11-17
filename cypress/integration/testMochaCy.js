@@ -1,6 +1,8 @@
 /// <reference types ="cypress" />
+/// <reference types="cypress-xpath" />
 
-var bookSection = '#app > div > div > div.home-body > div > div:nth-child(6)'
+
+var bookSection ='//*[@id="app"]/div/div/div[2]/div/div[6]'
 var BookStoreText  = '#app > div > div > div.pattern-backgound.playgound-header > div' 
 
 
@@ -9,24 +11,21 @@ it('open page',function(){
 
     cy.visit('https://demoqa.com/');
     cy.scrollTo('bottom');
-    cy.get(bookSection).trigger('click');
+    cy.xpath(bookSection).click();
     cy.get(BookStoreText).should('have.text', 'Book Store')
    
 
 })
 
-var resultText = 'div.uMdZh:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(1) > div:nth-child(2) > span:nth-child(1)';
-
+var resultText = '//*[@id="rso"]/div[1]/div/div[1]/div/div/div/div[1]/a/h3';
 
 
 it('text',function(){
 
-
     cy.visit("https://google.com/");
-    cy.get('.gLFyf').type("food");
+    cy.get('.gLFyf').type("food wiki");
     cy.get('.gLFyf').type("{enter}");
-    cy.get(resultText).should('have.text', 'Harto’s fast food')
-
+    cy.xpath(resultText).should('have.text', 'Food - Wikipedia');
 
 })
 
